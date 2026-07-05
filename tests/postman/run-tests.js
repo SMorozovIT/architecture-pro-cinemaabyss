@@ -66,8 +66,26 @@ if (!fs.existsSync(environmentPath)) {
   process.exit(1);
 }
 
-// Parse reporters
-const reporters = argv.reporters.split(',').map(r => r.trim());
+// Parse reporters. External Newman reporters are optional so a missing
+// local reporter does not block API verification.
+const builtInReporters = new Set(['cli', 'json', 'junit', 'progress']);
+const reporters = argv.reporters
+  .split(',')
+  .map(r => r.trim())
+  .filter(Boolean)
+  .filter(reporter => {
+    if (builtInReporters.has(reporter)) {
+      return true;
+    }
+
+    try {
+      require.resolve(`newman-reporter-${reporter}`);
+      return true;
+    } catch (error) {
+      console.warn(`Reporter "${reporter}" is not installed and will be skipped.`);
+      return false;
+    }
+  });
 
 // Configure Newman options
 const newmanOptions = {

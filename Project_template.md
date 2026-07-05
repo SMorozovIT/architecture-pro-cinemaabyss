@@ -5,7 +5,7 @@
 1. Спроектируйте to be архитектуру КиноБездны, разделив всю систему на отдельные домены и организовав интеграционное взаимодействие и единую точку вызова сервисов.
 Результат представьте в виде контейнерной диаграммы в нотации С4.
 Добавьте ссылку на файл в этот шаблон
-[ссылка на файл](ссылка)
+[C4 контейнерная диаграмма To Be архитектуры CinemaAbyss](docs/task1-c4-container.md)
 
 
 ## Задание 2
@@ -58,6 +58,8 @@
 
 Необходимые тесты для проверки этого API вызываются при запуске npm run test:local из папки tests/postman 
 Приложите скриншот тестов и скриншот состояния топиков Kafka http://localhost:8090 
+
+[Описание реализации задания 2: Proxy и Kafka](docs/task2-proxy-kafka.md)
 
 
 ## Задание 3
@@ -272,7 +274,9 @@ cat .docker/config.json | base64
   Откройте логи event-service и сделайте скриншот обработки событий
 
 #### Шаг 3
-Добавьте сюда скриншота вывода при вызове https://cinemaabyss.example.com/api/movies и  скриншот вывода event-service после вызова тестов.
+![1](/docs/task3-1.png)
+![2](/docs/task3-2.png)
+![3](/docs/task3-3.png)
 
 
 ## Задание 4
@@ -349,6 +353,8 @@ minikube tunnel
 https://cinemaabyss.example.com/api/movies
 и приложите скриншот развертывания helm и вывода https://cinemaabyss.example.com/api/movies
 
+![1](/docs/task4-1.png)
+![2](/docs/task4-2.png)
 
 # Задание 5
 Компания планирует активно развиваться и для повышения надежности, безопасности, реализации сетевых паттернов типа Circuit Breaker и канареечного деплоя вам как архитектору необходимо развернуть istio и настроить circuit breaker для monolith и movies сервисов.
@@ -414,6 +420,9 @@ You can see 21 for the upstream_rq_pending_overflow value which means 21 calls s
 ```
 
 Приложите скриншот работы circuit breaker'а
+
+![1](/docs/task5-1.png)
+![2](/docs/task5-2.png)
 
 Удаляем все
 ```bash
